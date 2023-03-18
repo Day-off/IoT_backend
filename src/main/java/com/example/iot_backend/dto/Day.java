@@ -20,10 +20,10 @@ public class Day {
     private String phenomenon;
 
     @JacksonXmlProperty(localName = "tempmin")
-    private int tempmin;
+    private String tempmin;
 
     @JacksonXmlProperty(localName = "tempmax")
-    private int tempmax;
+    private String tempmax;
 
     @JacksonXmlProperty(localName = "text")
     private String text;

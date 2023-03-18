@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlElement;
 @Getter
 @Setter
 public class Wind {
@@ -16,9 +15,9 @@ public class Wind {
     private String direction;
 
     @JacksonXmlProperty(localName = "speedmin")
-    private int speedmin;
+    private String speedmin;
     @JacksonXmlProperty(localName = "speedmax")
-    private int speedmax;
+    private String speedmax;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String gust;
