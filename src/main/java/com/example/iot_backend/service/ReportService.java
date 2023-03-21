@@ -5,15 +5,19 @@ import com.example.iot_backend.dto.Report;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReportService {
 
     private final RestTemplate restTemplate;
@@ -37,8 +41,16 @@ public class ReportService {
         }
     }
 
-    public ResponseEntity<String> getAverageTemperature() {
-        return ResponseEntity.ok("MAX: "+ String.format("%.2f", averageMax)+" MIN: "+ String.format("%.2f", averageMin));
+    public static String getCurrentTimeStamp() {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        return sdfDate.format(now);
+    }
+
+    public String getAverageTemperature() {
+        return "MAX-TEMP: "+ String.format("%.2f", averageMax)
+                +", MIN-TEMP: "+ String.format("%.2f", averageMin)
+                + ", LAST-UPDATE: " + getCurrentTimeStamp();
     }
 
     @Scheduled(fixedRate=60*60*1000)

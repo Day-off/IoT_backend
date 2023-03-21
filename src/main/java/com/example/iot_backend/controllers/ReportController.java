@@ -23,7 +23,7 @@ public class ReportController {
 
     @GetMapping(value = "getAverageTemperature")
     public ResponseEntity<String> getAverageTemperature() {
-        return reportService.getAverageTemperature();
+        return ResponseEntity.ok(reportService.getAverageTemperature());
     }
 
 
